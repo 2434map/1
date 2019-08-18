@@ -26,20 +26,20 @@
 	var viewer = OpenSeadragon({
 		id: "main", 
 		prefixUrl: "images/", 
+		showNavigator: true, 
 		tileSources: {
 			Image: {
 				xmlns:   "https://schemas.microsoft.com/deepzoom/2008",
-				Url: "tiles/", 
-				Format: "jpg", 
-				Overlap: "2", 
+				Url:  "tiles/",
+				Format:   "jpg", 
+				Overlap:  "2", 
 				TileSize: "256",
 				Size: {
 					Height: "12800",
-					Width: "16000"
+					Width:	"16000"
 				}
 			}
-		}, 
-		showNavigator:  true
+		}
 	});
 	viewer.bookmarkUrl();
 </script>
