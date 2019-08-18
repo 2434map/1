@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<script src="js/openseadragon.min.js"></script>
+	<style type="text/css">
+
+		#main {
+			width: 100%;
+			height: 100%;
+		}
+
+	</style>
+</head>
+
+<body>
+<div id="main"></div>
+<script type="text/javascript">
+	OpenSeadragon({
+		id: "main", 
+		prefixUrl: "images/", 
+		showNavigator: true, 
+		tileSources: {
+			Image: {
+				//xmlns:   "https://schemas.microsoft.com/deepzoom/2008",
+				Url:  "/tiles/",
+				Format:   "jpg", 
+				Overlap:  "2", 
+				TileSize: "256",
+				Size: {
+					Height: "12800",
+					Width:	"16000"
+				}
+			}
+		}
+
+
+	});
+
+
+
+
+</script>
+</body>
+</html>
