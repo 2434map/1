@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html><head>
+<script src="js/openseadragon.js"></script>
+<script src="js/openseadragon-bookmark-url.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145408095-1"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-145408095-1');
+</script>
+<title>にじさんじサーバ通常地図</title>
+</head><body>
+<nav>
+<ul>
+<li class="current"><a href="./">通常地図</a></li>
+<li><a href="./all2.html">全体地図</a></li>
+<li><a href="Nether.html">ネザー地図</a></li>
+</ul>
+<img src="images/center.gif">
+</nav>
+<div id="main"></div>
+<script type="text/javascript">
+	var viewer = OpenSeadragon({
+		id: "main", 
+		prefixUrl: "images/", 
+		showNavigator: true, 
+		tileSources: {
+			Image: {
+				xmlns:   "https://schemas.microsoft.com/deepzoom/2008",
+				Url:  "tiles/",
+				Format:   "jpg", 
+				Overlap:  "2", 
+				TileSize: "256",
+				Size: {
+					Height: "12800",
+					Width:	"16000"
+				}
+			}
+		}
+	});
+	viewer.bookmarkUrl();
+</script>
+</body>
+</html>
