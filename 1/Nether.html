@@ -26,6 +26,7 @@
 	var viewer = OpenSeadragon({
 		id: "main", 
 		prefixUrl: "images/", 
+		showNavigator:  true, 
 		tileSources: {
 			Image: {
 				xmlns: "http://schemas.microsoft.com/deepzoom/2008", 
@@ -38,8 +39,7 @@
 					Width: "10000"
 				}
 			}
-		}, 
-		showNavigator:  true
+		}
 	});
 	viewer.bookmarkUrl();
 </script>
