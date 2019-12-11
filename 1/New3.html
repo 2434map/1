@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html><head>
+<script src="js/openseadragon.js"></script>
+<script src="js/openseadragon-bookmark-url.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145408095-1"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-145408095-1');
+</script>
+<title>にじさんじサーバ新規ワールド３地図</title>
+</head><body>
+<nav>
+<ul>
+<li><a href="./">通常地図</a></li>
+<li><a href="./all2.html">全体地図</a></li>
+<li><a href="Nether.html">ネザー地図</a></li>
+<li><a href="New1.html">新規ワールド１</a></li>
+<li><a href="New2.html">新規ワールド２</a></li>
+<li class="current"><a href="New3.html">新規ワールド３</a></li>
+<li><a href="New4.html">新規ワールド４</a></li>
+<li><a href="New5.html">新規ワールド５</a></li>
+<li><a href="New6.html">新規ワールド６</a></li>
+</ul>
+<img src="images/center.gif">
+</nav>
+<main id="main"></main>
+<script type="text/javascript">
+	var viewer = OpenSeadragon({
+		id: "main", 
+		prefixUrl: "images/", 
+		showNavigator:  true, 
+		tileSources: {
+			Image: {
+				xmlns: "http://schemas.microsoft.com/deepzoom/2008", 
+				Url: "New3/", 
+				Format: "jpg", 
+				Overlap: "2", 
+				TileSize: "256",
+				Size: {
+					Height: "5638",
+					Width: "5796"
+				}
+			}
+		}
+	});
+	viewer.bookmarkUrl();
+</script>
+</body>
+</html>
