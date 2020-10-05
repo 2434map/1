@@ -46,3 +46,7 @@ nav>img {
 	user-select: none;
 	pointer-events: none;
 }
+#stalker {
+	position: fixed;
+	z-index: 9999;
+}
