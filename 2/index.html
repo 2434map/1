@@ -98,6 +98,19 @@
 			}
 		}
 
+
+		// 変化検知
+		var imagingHelper = viewer.activateImagingHelper({onImageViewChanged: onImageViewChanged});
+
+		function onImageViewChanged(event) {
+			//alert(imagingHelper.getZoomFactor());
+			if(imagingHelper.getZoomFactor() > 0.5){
+				$("a.Marker").css('display','block');
+			} else {
+				$("a.Marker").css('display','none');
+			}
+		}
+
 	});
 </script>
 </body>
