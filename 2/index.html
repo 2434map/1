@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html><head>
+<script src="js/openseadragon.js"></script>
+<script src="js/openseadragon-bookmark-url.js"></script>
+<script src="js/openseadragon-stalker.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145408095-1"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-145408095-1');
+</script>
+<title>にじさんじサーバ通常地図</title>
+</head><body>
+<nav>
+<ul>
+<li class="current"><a href="./">通常地図</a></li>
+<li><a href="./all2.html#zoom=19.92753623188406&x=0.8067259594949632&y=0.6080154476736246">全体地図</a></li>
+<li><a href="Nether.html">ネザー地図</a></li>
+<li><a href="New.html">新規ワールド</a></li>
+<li><a href="New_Nether.html">新規ワールドネザー</a></li>
+</ul>
+<img src="images/center.gif">
+</nav>
+<main id="main"></main>
+<script type="text/javascript">
+
+	var vh = 6400;
+	var vw = 9067;
+	var mh = 36;
+	var mw = 36;
+
+	var markerfile = 'maker.csv';
+	var marker = [];
+	function readMarkerCsv(data) {
+		var csv = $.csv.toArrays(data);
+		for(var i=0; i<csv.length; i++) if(i>0) marker.push(csv[i]);
+	}
+	$.get(markerfile, readMarkerCsv, 'text');// マーカー情報
+
+	$(document).ajaxStop(function() {
+
+		var viewer = OpenSeadragon({
+			id: "main", 
+			prefixUrl: "images/", 
+			showNavigator: true, 
+			tileSources: {
+				Image: {
+					xmlns:   "http://schemas.microsoft.com/deepzoom/2008",
+					Url:  "tiles/",
+					Format:   "jpg", 
+					Overlap:  1, 
+					TileSize: 256,
+					Size: {
+						Height: vh,
+						Width:	vw
+					}
+				}
+			}
+		});
+		viewer.bookmarkUrl();
+		viewer.stalkerImage();
+
+		var hEl = viewer.HTMLelements();
+		var M = [];
+		for(var i=0; i<marker.length; i++){
+			M[i] = document.createElement("a");
+			M[i].className = "Marker";
+			M[i].setAttribute("href", marker[i][3]);
+			M[i].setAttribute("title", marker[i][2]);
+			M[i].setAttribute("target","_blank");
+
+			hEl.addElement({
+				id: "M"+String(i),
+				element: M[i],
+				x: Math.round(marker[i][0]*vw)-Math.round(mw/2),
+				y: Math.round(marker[i][1]*vw)-Math.round(mh/2),
+				width: mw,
+				height: mh
+			})
+			new OpenSeadragon.MouseTracker({element: M[i], clickHandler: onMarker});
+
+			function onMarker(e){
+				var target = e.originalEvent.target;
+				if (target.matches('a')) {
+					if (target.getAttribute('target') === '_blank') {
+						window.open(target.getAttribute('href'));
+					} else {
+						location.href = target.getAttribute('href');
+					}
+				}
+			}
+		}
+
+	});
+</script>
+</body>
+</html>
