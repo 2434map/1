@@ -98,7 +98,7 @@
 				}
 			}
 			//console.dir(self.viewport); 
-			console.log(self.viewport.getZoom());
+			console.log(self.getZoom());
 
 		});
 
