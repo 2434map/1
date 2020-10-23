@@ -97,7 +97,9 @@
 					}
 				}
 			}
-			console.dir(self.viewport); 
+			//console.dir(self.viewport); 
+			console.log(self.viewport.getZoom());
+
 		});
 
 	}
