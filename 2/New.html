@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html><head>
-<script src="js/openseadragon.js"></script>
-<script src="js/openseadragon-bookmark-url.js"></script>
-<script src="js/openseadragon-stalker.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<script src="config.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145408095-1"></script>
@@ -26,6 +26,10 @@
 </nav>
 <main id="main"></main>
 <script type="text/javascript">
+
+	var vh = 6064;
+	var vw = 6064;
+
 	var viewer = OpenSeadragon({
 		id: "main", 
 		prefixUrl: "images/", 
@@ -35,17 +39,18 @@
 				xmlns: "http://schemas.microsoft.com/deepzoom/2008", 
 				Url: "New_tiles/", 
 				Format: "jpg", 
-				Overlap: "1", 
-				TileSize: "256",
+				Overlap:  1, 
+				TileSize: 256,
 				Size: {
-					Height: "6064",
-					Width: "6064"
+					Height: vh,
+					Width:	vw
 				}
 			}
 		}
 	});
-	viewer.bookmarkUrl();
-	viewer.stalkerImage();
+	viewer.bookmarkUrl();// 座標URL
+	viewer.stalkerImage();// アニメーションポインター
+	viewer.markerLink('New_marker.csv', vw);// CSVマーカー
 </script>
 </body>
 </html>
