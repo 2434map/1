@@ -56,7 +56,11 @@
 	var imagingHelper = viewer.activateImagingHelper({onImageViewChanged: onImageViewChanged});
 //alert(viewer.imagingHelper.getZoomFactor());
 
-	viewer.addHandler('open', onImageViewChanged);
+	viewer.addHandler('open', function(){
+					$("a.marker").css('display','block');
+					$("a.marker").css('width','32px');
+					$("a.marker").css('height','32px');
+	});
 	function onImageViewChanged(event) {
 		//alert(self.imagingHelper.getZoomFactor());
 
