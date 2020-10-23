@@ -80,13 +80,7 @@
 					else location.href = target.getAttribute('href');
 				}
 			}
-/*
-			if (params.zoom !== undefined && params.zoom > 0.5) {
-				if(jQuery('.markerOn').length) jQuery("a.marker").css('display','block');
-			} else {
-				jQuery("a.marker").css('display','none');
-			}
-*/
+
 			// 変化検知
 			var imagingHelper = self.activateImagingHelper({onImageViewChanged: onImageViewChanged});
 			function onImageViewChanged(event) {
