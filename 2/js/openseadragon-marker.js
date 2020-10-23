@@ -65,7 +65,7 @@
 					jQuery("a.marker").css('display','none');
 				}
 			}
-			alert(imagingHelper.getZoomFactor());
+
 			if(imagingHelper.getZoomFactor() > 0.5){
 				if(jQuery('.markerOn').length) jQuery("a.marker").css('display','block');
 			} else {
@@ -97,6 +97,7 @@
 					}
 				}
 			}
+			console.dir(self.viewport); 
 		});
 
 	}
