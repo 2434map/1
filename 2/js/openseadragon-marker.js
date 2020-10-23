@@ -98,8 +98,8 @@
 				}
 			}
 			//console.dir(self.viewport); 
-			console.log(self.viewport.getZoom());
-			console.dir(self); 
+			console.log(self.viewport.getZoom);
+			console.dir(self.viewport); 
 
 
 		});
