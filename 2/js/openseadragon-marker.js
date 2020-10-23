@@ -17,7 +17,7 @@
 	$.Viewer.prototype.markerLink = function(f, w) {
 		var self = this;
 
-		jQuery(document).ajaxStop(function() {
+		//jQuery(document).ajaxStop(function() {
 			var markerfile = f;
 			var marker = [];
 			function readMarkerCsv(data) {
@@ -25,7 +25,7 @@
 				for(var i=0; i<csv.length; i++) if(i>0) marker.push(csv[i]);
 			}
 			jQuery.get(markerfile, readMarkerCsv, 'text');// マーカー情報
-		});
+		//});
 
 		var hEl = self.HTMLelements();
 		var M = [];
