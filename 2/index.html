@@ -52,7 +52,19 @@
 	viewer.stalkerImage();// アニメーションポインター
 	viewer.markerLink('marker.csv', vw);// CSVマーカー
 
+	// 変化検知
+	var imagingHelper = viewer.activateImagingHelper({onImageViewChanged: onImageViewChanged});
+	function onImageViewChanged(event) {
+		//alert(self.imagingHelper.getZoomFactor());
 
+		if(viewer.imagingHelper.getZoomFactor() > 0.5){
+			if($('.markerOn').length) $("a.marker").css('display','block');
+		} else {
+			$("a.marker").css('display','none');
+		}
+
+
+	}
 
 </script>
 </body>
