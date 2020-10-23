@@ -70,7 +70,9 @@
 					id: "M"+String(i),
 					element: M[i],
 					x: Math.round(marker[i][0]*w)-Math.round(mw/2),
-					y: Math.round(marker[i][1]*w)-Math.round(mh/2)
+					y: Math.round(marker[i][1]*w)-Math.round(mh/2),
+					width: mw,
+					height: mh
 				})
 				new OpenSeadragon.MouseTracker({element: M[i], clickHandler: onMarker});
 			}
