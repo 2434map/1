@@ -36,6 +36,8 @@
 		var csv = jQuery.csv.toArrays(data);
 		for(var i=0; i<csv.length; i++) if(i>0) marker.push(csv[i]);
 	}
+	$.get(markerfile, readMarkerCsv, 'text');// マーカー情報
+
 
 	var viewer = OpenSeadragon({
 		id: "main", 
