@@ -1,7 +1,5 @@
 (function() {
 
-	var mh = 36;
-	var mw = 36;
 
 	// ----------
 	var $ = window.OpenSeadragon;
@@ -70,9 +68,7 @@
 					id: "M"+String(i),
 					element: M[i],
 					x: Math.round(marker[i][0]*w)-Math.round(mw/2),
-					y: Math.round(marker[i][1]*w)-Math.round(mh/2),
-					width: mw,
-					height: mh
+					y: Math.round(marker[i][1]*w)-Math.round(mh/2)
 				})
 				new OpenSeadragon.MouseTracker({element: M[i], clickHandler: onMarker});
 			}

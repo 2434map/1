@@ -74,5 +74,7 @@ nav>img {
 .marker {
 	background-image:url("images/marker.png");
 	background-size:contain;
+	width:36px;
+	height:36px;
 }
 
