@@ -57,11 +57,15 @@
 				M[i].setAttribute("href",marker[i][3]);
 				M[i].setAttribute("title",marker[i][2]);
 				M[i].setAttribute("target","_blank");
+
+/*
 				if (params.zoom !== undefined && params.zoom > 0.5) {
 					M[i].style.display='block';
 				} else {
 					M[i].style.display='none';
 				}
+*/
+
 				hEl.addElement({
 					id: "M"+String(i),
 					element: M[i],
@@ -85,21 +89,21 @@
 			var imagingHelper = self.activateImagingHelper({onImageViewChanged: onImageViewChanged});
 			function onImageViewChanged(event) {
 				var params = parseHash();
-
+/*
 				if (params.zoom !== undefined && params.zoom > 0.5) {
 					if(jQuery('.markerOn').length) jQuery("a.marker").css('display','block');
 				} else {
 					jQuery("a.marker").css('display','none');
 				}
-
+*/
 				//alert(self.imagingHelper.getZoomFactor());
-/*
+
 				if(self.imagingHelper.getZoomFactor() > 0.5){
 					if(jQuery('.markerOn').length) jQuery("a.marker").css('display','block');
 				} else {
 					jQuery("a.marker").css('display','none');
 				}
-*/
+/**/
 			}
 
 
