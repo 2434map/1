@@ -30,23 +30,22 @@
 		var hEl = self.HTMLelements();
 		var M = [];
 
-		var i = 0;
-		M[i] = document.createElement("a");
-		M[i].className = "marker markerOn";
-
-
-		M[i].setAttribute("href","https://www.yahoo.co.jp");
-		M[i].setAttribute("title","テスト");
-		M[i].setAttribute("target","_blank");
-		hEl.addElement({
-			id: "M"+String(i),
-			element: M[i],
-			x: Math.round(0.25379620774114015*w)-Math.round(mw/2),
-			y: Math.round(0.19268133869613682*w)-Math.round(mh/2),
-			width: mw,
-			height: mh
-		})
-		new OpenSeadragon.MouseTracker({element: M[i], clickHandler: onMarker});
+		for(var i=0; i<marker.length; i++){
+			M[i] = document.createElement("a");
+			M[i].className = "marker markerOn";
+			M[i].setAttribute("href",marker[i][3]);
+			M[i].setAttribute("title",marker[i][2]);
+			M[i].setAttribute("target","_blank");
+			hEl.addElement({
+				id: "M"+String(i),
+				element: M[i],
+				x: Math.round(marker[i][0]*w)-Math.round(mw/2),
+				y: Math.round(marker[i][1]*w)-Math.round(mh/2),
+				width: mw,
+				height: mh
+			})
+			new OpenSeadragon.MouseTracker({element: M[i], clickHandler: onMarker});
+		}
 
 		function onMarker(e){
 			var target = e.originalEvent.target;
