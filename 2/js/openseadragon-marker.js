@@ -18,6 +18,27 @@
 		var self = this;
 
 
+		var parseHash = function() {
+			var params = {};
+			var hash = window.location.hash.replace(/^#/, '');
+			if (hash) {
+				var parts = hash.split('&');
+				parts.forEach(function(part) {
+					var subparts = part.split('=');
+					var key = subparts[0];
+					var value = parseFloat(subparts[1]);
+					if (!key || isNaN(value)) {
+						console.error('bad hash param', part);
+					} else {
+						params[key] = value;
+					}
+				});
+			}
+			return params;
+		};
+
+		var params = parseHash();
+
 		var markerfile = f;
 		var marker = [];
 		function readMarkerCsv(data) {
@@ -53,6 +74,12 @@
 					if (target.getAttribute('target') === '_blank') window.open(target.getAttribute('href'));
 					else location.href = target.getAttribute('href');
 				}
+			}
+
+			if (params.zoom !== undefined && params.zoom > 0.5) {
+				if(jQuery('.markerOn').length) jQuery("a.marker").css('display','block');
+			} else {
+				jQuery("a.marker").css('display','none');
 			}
 
 			// 変化検知
@@ -98,9 +125,7 @@
 				}
 			}
 			//console.dir(self.viewport); 
-			console.log(self.viewport.getZoom);
-			console.dir(self.viewport); 
-
+			//console.log(self.viewport.getZoom);
 
 		});
 
