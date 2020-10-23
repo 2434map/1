@@ -99,6 +99,8 @@
 			}
 			//console.dir(self.viewport); 
 			console.log(self.getZoom());
+			console.dir(self); 
+
 
 		});
 
