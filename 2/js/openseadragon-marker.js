@@ -84,13 +84,24 @@
 			// 変化検知
 			var imagingHelper = self.activateImagingHelper({onImageViewChanged: onImageViewChanged});
 			function onImageViewChanged(event) {
+				var params = parseHash();
+
+				if (params.zoom !== undefined && params.zoom > 0.5) {
+					if(jQuery('.markerOn').length) jQuery("a.marker").css('display','block');
+				} else {
+					jQuery("a.marker").css('display','none');
+				}
+
 				//alert(self.imagingHelper.getZoomFactor());
+/*
 				if(self.imagingHelper.getZoomFactor() > 0.5){
 					if(jQuery('.markerOn').length) jQuery("a.marker").css('display','block');
 				} else {
 					jQuery("a.marker").css('display','none');
 				}
+*/
 			}
+
 
 			let markerButton = new OpenSeadragon.Button({
 				tooltip:  'Marker',
