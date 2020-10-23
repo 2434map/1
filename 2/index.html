@@ -61,7 +61,10 @@
 		//alert(self.imagingHelper.getZoomFactor());
 
 		if(viewer.imagingHelper.getZoomFactor() > 0.5){
-			if($('.markerOn').length) $("a.marker").css('display','block');
+			if($('.markerOn').length){
+					$("a.marker").css('display','block');
+					$("a.marker").css('width','32px');
+					$("a.marker").css('height','32px');
 		} else {
 			$("a.marker").css('display','none');
 		}
