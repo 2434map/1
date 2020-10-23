@@ -56,7 +56,7 @@
 	var imagingHelper = viewer.activateImagingHelper({onImageViewChanged: onImageViewChanged});
 //alert(viewer.imagingHelper.getZoomFactor());
 
-	viewer.addEventListener('open', onImageViewChanged);
+	viewer.addHandler('open', onImageViewChanged);
 	function onImageViewChanged(event) {
 		//alert(self.imagingHelper.getZoomFactor());
 
