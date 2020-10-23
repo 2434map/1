@@ -30,6 +30,13 @@
 	var vh = 6400;
 	var vw = 9067;
 
+	var markerfile = 'marker.csv';
+	var marker = [];
+	function readMarkerCsv(data) {
+		var csv = jQuery.csv.toArrays(data);
+		for(var i=0; i<csv.length; i++) if(i>0) marker.push(csv[i]);
+	}
+
 	var viewer = OpenSeadragon({
 		id: "main", 
 		prefixUrl: "images/", 
@@ -50,7 +57,7 @@
 	});
 	viewer.bookmarkUrl();// 座標URL
 	viewer.stalkerImage();// アニメーションポインター
-	viewer.markerLink('marker.csv', vw);// CSVマーカー
+	//viewer.markerLink('marker.csv', vw);// CSVマーカー
 </script>
 </body>
 </html>
