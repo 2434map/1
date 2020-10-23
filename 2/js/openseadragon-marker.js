@@ -14,7 +14,8 @@
 	// ----------
 	$.Viewer.prototype.markerLink = function(f, w) {
 		var self = this;
-
+		var mh = 36;
+		var mw = 36;
 
 		var parseHash = function() {
 			var params = {};
@@ -36,6 +37,7 @@
 		};
 
 		var params = parseHash();
+
 
 		var markerfile = f;
 		var marker = [];
