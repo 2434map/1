@@ -58,13 +58,14 @@
 				M[i].setAttribute("title",marker[i][2]);
 				M[i].setAttribute("target","_blank");
 
-
+					M[i].style.display='block';
+/*
 				if (params.zoom !== undefined && params.zoom > 0.5) {
 					M[i].style.display='block';
 				} else {
 					M[i].style.display='none';
 				}
-/**/
+*/
 
 				hEl.addElement({
 					id: "M"+String(i),
