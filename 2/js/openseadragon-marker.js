@@ -128,7 +128,9 @@
 					jQuery("a.marker").css('display','none');
 				} else {
 					jQuery("a.marker").addClass('markerOn');
-					if(imagingHelper.getZoomFactor() > 0.5){
+					var params = parseHash();
+					if (params.zoom !== undefined && params.zoom > 0.5) {
+					//if(imagingHelper.getZoomFactor() > 0.5){
 						jQuery("a.marker").css('display','block');
 					} else {
 						jQuery("a.marker").css('display','none');
