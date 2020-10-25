@@ -85,7 +85,7 @@
 		}
 		jQuery.get(markerfile, readMarkerCsv, 'text');// マーカー情報
 
-		//jQuery(document).ajaxStop(function() {
+		jQuery(document).ajaxStop(function() {
 			var hEl = viewer.HTMLelements();
 			var M = [];
 
@@ -178,7 +178,7 @@
 			//console.dir(self.viewport); 
 			//console.log(self.viewport.getZoom);
 
-		//});
+		});
 
 
 /*
