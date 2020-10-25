@@ -76,7 +76,7 @@
 					width: mw,
 					height: mh
 				})
-				new OpenSeadragon.MouseTracker({element: M[i], clickHandler: onMarker});
+				//new OpenSeadragon.MouseTracker({element: M[i], clickHandler: onMarker});
 			}
 
 			function onMarker(e){
