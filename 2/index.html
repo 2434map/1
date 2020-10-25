@@ -51,7 +51,7 @@
 	viewer.bookmarkUrl();// 座標URL
 	viewer.stalkerImage();// アニメーションポインター
 	//viewer.markerLink('marker.csv', vw);// CSVマーカー
-
+			var hEl = viewer.HTMLelements();
 		var mh = 36;
 		var mw = 36;
 
@@ -85,8 +85,10 @@
 		}
 		jQuery.get(markerfile, readMarkerCsv, 'text');// マーカー情報
 
+
+
 		jQuery(document).ajaxStop(function() {
-			var hEl = viewer.HTMLelements();
+
 			var M = [];
 
 			for(var i=0; i<marker.length; i++){
