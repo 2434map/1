@@ -23,7 +23,7 @@
 		var cookie = jQuery.cookie('pointer');
 		im.id= 'stalker';
 
-		if(cookie === undefined||cookie){ 
+		if(cookie === undefined||cookie === true){ 
 			im.classList.add('stalkerOn');
 			jQuery.removeCookie('pointer');
 			jQuery.cookie('pointer',true,{expires:exp, path: '/'});
