@@ -20,8 +20,10 @@
 
 		var body = document.body;
 		var im = document.createElement("div");
+		var cookie = jQuery.cookie('pointer');
 		im.id= 'stalker';
-		if(jQuery.cookie('pointer') === undefined||jQuery.cookie('pointer')=='1'){ 
+
+		if(cookie === undefined||cookie=='1'){ 
 			im.classList.add('stalkerOn');
 			jQuery.cookie('pointer','1',{expires:exp});
 		} else {
