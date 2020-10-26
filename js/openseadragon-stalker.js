@@ -25,11 +25,13 @@
 
 		if(jQuery.cookie('pointer') === undefined||jQuery.cookie('pointer')){ 
 			im.classList.add('stalkerOn');
+			jQuery.removeCookie('pointer');
 			jQuery.cookie('pointer',true,{expires:exp});
 			console.log(jQuery.cookie('pointer'));
 			console.log('stalkerOn');
 		} else {
 			im.classList.add('stalkerOff');
+			jQuery.removeCookie('pointer');
 			jQuery.cookie('pointer',false,{expires:exp});
 			console.log('stalkerOff');
 		}
@@ -78,6 +80,7 @@
 					element.classList.add('stalkerOff');
 					element.classList.remove('stalkerOn');
 				});
+				jQuery.removeCookie('pointer');
 				jQuery.cookie('pointer',false,{expires:exp});
 			} else if(document.querySelector('.stalkerOff')) {
 				let elements = document.getElementsByClassName('stalkerOff');
@@ -85,6 +88,7 @@
 					element.classList.add('stalkerOn');
 					element.classList.remove('stalkerOff');
 				});
+				jQuery.removeCookie('pointer');
 				jQuery.cookie('pointer',true,{expires:exp});
 			}
 			console.log(jQuery.cookie('pointer'));
