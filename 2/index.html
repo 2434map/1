@@ -35,79 +35,96 @@
 
 	var vh = 6400;
 	var vw = 9067;
+	var mh = 36;
+	var mw = 36;
 
-
-		var mh = 36;
-		var mw = 36;
-
-		var parseHash = function() {
-			var params = {};
-			var hash = window.location.hash.replace(/^#/, '');
-			if (hash) {
-				var parts = hash.split('&');
-				parts.forEach(function(part) {
-					var subparts = part.split('=');
-					var key = subparts[0];
-					var value = parseFloat(subparts[1]);
-					if (!key || isNaN(value)) {
-						console.error('bad hash param', part);
-					} else {
-						params[key] = value;
-					}
-				});
-			}
-			return params;
-		};
-
-		var params = parseHash();
-
-
-		var markerfile = "marker.csv";
-		var marker = [];
-		function readMarkerCsv(data) {
-			var csv = jQuery.csv.toArrays(data);
-			for(var i=0; i<csv.length; i++) if(i>0) marker.push(csv[i]);
+	var parseHash = function() {
+		var params = {};
+		var hash = window.location.hash.replace(/^#/, '');
+		if (hash) {
+			var parts = hash.split('&');
+			parts.forEach(function(part) {
+				var subparts = part.split('=');
+				var key = subparts[0];
+				var value = parseFloat(subparts[1]);
+				if (!key || isNaN(value)) {
+					console.error('bad hash param', part);
+				} else {
+					params[key] = value;
+				}
+			});
 		}
-		jQuery.get(markerfile, readMarkerCsv, 'text');// マーカー情報
+		return params;
+	};
+	var params = parseHash();
+
+
+	var markerfile = "marker.csv";
+	var marker = [];
+	function readMarkerCsv(data) {
+		var csv = jQuery.csv.toArrays(data);
+		for(var i=0; i<csv.length; i++) if(i>0) marker.push(csv[i]);
+	}
+	jQuery.get(markerfile, readMarkerCsv, 'text');// マーカー情報
 
 
 
-		jQuery(document).ajaxStop(function() {
-//viewer.addHandler('open', function() {
+	jQuery(document).ajaxStop(function() {
 
 
-	var viewer = OpenSeadragon({
-		id: "main", 
-		prefixUrl: "images/", 
-		showNavigator: true, 
-		tileSources: {
-			Image: {
-				xmlns:    "http://schemas.microsoft.com/deepzoom/2008",
-				Url:      "tiles/",
-				Format:   "jpg", 
-				Overlap:  1, 
-				TileSize: 256,
-				Size: {
-					Height: vh,
-					Width:  vw
+		// CSV読み込みが完了する前にviewerを生成するとopen時の描写がされない
+		var viewer = OpenSeadragon({
+			id: "main", 
+			prefixUrl: "images/", 
+			showNavigator: true, 
+			tileSources: {
+				Image: {
+					xmlns:    "http://schemas.microsoft.com/deepzoom/2008",
+					Url:      "tiles/",
+					Format:   "jpg", 
+					Overlap:  1, 
+					TileSize: 256,
+					Size: {
+						Height: vh,
+						Width:  vw
+					}
 				}
 			}
+		});
+		viewer.bookmarkUrl();// 座標URL
+		viewer.stalkerImage();// アニメーションポインター
+
+		var imagingHelper = viewer.activateImagingHelper({onImageViewChanged: onImageViewChanged});
+		function onImageViewChanged(event) {
+			if(viewer.imagingHelper.getZoomFactor() > 0.5){
+				if(jQuery('.markerOn').length) jQuery("a.marker").css('display','block');
+			} else {
+				jQuery("a.marker").css('display','none');
+			}
 		}
-	});
-	viewer.bookmarkUrl();// 座標URL
-	viewer.stalkerImage();// アニメーションポインター
-	//viewer.markerLink('marker.csv', vw);// CSVマーカー
-			var hEl = viewer.HTMLelements();
 
 
-			var M = [];
 
-			for(var i=0; i<marker.length; i++){
-				M[i] = document.createElement("a");
-				M[i].className = "marker markerOn";
-				M[i].setAttribute("href",marker[i][3]);
-				M[i].setAttribute("title",marker[i][2]);
-				M[i].setAttribute("target","_blank");
+
+		//viewer.markerLink('marker.csv', vw);// CSVマーカー
+		var hEl = viewer.HTMLelements();
+		var M = [];
+
+		for(var i=0; i<marker.length; i++){
+			M[i] = document.createElement("a");
+			M[i].className = "marker markerOn";
+			M[i].setAttribute("href",marker[i][3]);
+			M[i].setAttribute("title",marker[i][2]);
+			M[i].setAttribute("target","_blank");
+
+			hEl.addElement({
+				id: "M"+String(i),
+				element: M[i],
+				x: Math.round(marker[i][0]*vw)-Math.round(mw/2),
+				y: Math.round(marker[i][1]*vw)-Math.round(mh/2),
+				width: mw,
+				height: mh
+			})
 
 
 /*
@@ -119,46 +136,27 @@
 				}
 */
 
-				hEl.addElement({
-					id: "M"+String(i),
-					element: M[i],
-					x: Math.round(marker[i][0]*vw)-Math.round(mw/2),
-					y: Math.round(marker[i][1]*vw)-Math.round(mh/2),
-					width: mw,
-					height: mh
-				})
-				//new OpenSeadragon.MouseTracker({element: M[i], clickHandler: onMarker});
-			}
 
-			function onMarker(e){
-				var target = e.originalEvent.target;
-				if (target.matches('a')) {
-					if (target.getAttribute('target') === '_blank') window.open(target.getAttribute('href'));
-					else location.href = target.getAttribute('href');
-				}
+			new OpenSeadragon.MouseTracker({element: M[i], clickHandler: onMarker});
+		}
+		if(viewer.imagingHelper.getZoomFactor() > 0.5){
+			if(jQuery('.markerOn').length) jQuery("a.marker").css('display','block');
+		} else {
+			jQuery("a.marker").css('display','none');
+		}
+
+
+		function onMarker(e){
+			var target = e.originalEvent.target;
+			if (target.matches('a')) {
+				if (target.getAttribute('target') === '_blank') window.open(target.getAttribute('href'));
+				else location.href = target.getAttribute('href');
 			}
+		}
 /*
 			// 変化検知
-			var imagingHelper = self.activateImagingHelper({onImageViewChanged: onImageViewChanged});
-			function onImageViewChanged(event) {
-				var params = parseHash();
-
-				if (params.zoom !== undefined && params.zoom > 0.5) {
-					if(jQuery('.markerOn').length) jQuery("a.marker").css('display','block');
-				} else {
-					jQuery("a.marker").css('display','none');
-				}
-
-				//alert(self.imagingHelper.getZoomFactor());
-
-				if(self.imagingHelper.getZoomFactor() > 0.5){
-					if(jQuery('.markerOn').length) jQuery("a.marker").css('display','block');
-				} else {
-					jQuery("a.marker").css('display','none');
-				}
 
 
-			}
 */
 
 			let markerButton = new OpenSeadragon.Button({
