@@ -30,27 +30,39 @@
 	var vh = 24000;
 	var vw = 30000;
 
-	var viewer = OpenSeadragon({
-		id: "main", 
-		prefixUrl: "images/", 
-		showNavigator:  true, 
-		tileSources: {
-			Image: {
-				xmlns: "http://schemas.microsoft.com/deepzoom/2008", 
-				Url: "all2_tiles/", 
-				Format: "jpg", 
-				Overlap: 2, 
-				TileSize: 256,
-				Size: {
-					Height: vh,
-					Width:	vw
+	var markerfile = "all2_marker.csv";
+	var marker = [];
+
+	function readMarkerCsv(data) {
+		var csv = $.csv.toArrays(data);
+		for(var i=0; i<csv.length; i++) if(i>0) marker.push(csv[i]);
+	}
+	$.get(markerfile, readMarkerCsv, 'text');// マーカー情報
+
+	$(document).ajaxStop(function() {
+
+		var viewer = OpenSeadragon({
+			id: "main", 
+			prefixUrl: "images/", 
+			showNavigator:  true, 
+			tileSources: {
+				Image: {
+					xmlns: "http://schemas.microsoft.com/deepzoom/2008", 
+					Url: "all2_tiles/", 
+					Format: "jpg", 
+					Overlap: 2, 
+					TileSize: 256,
+					Size: {
+						Height: vh,
+						Width:	vw
+					}
 				}
 			}
-		}
+		});
+		viewer.bookmarkUrl();// 座標URL
+		viewer.stalkerImage();// アニメーションポインター
+		viewer.markerLink(marker, vw);// マーカーリンク
 	});
-	viewer.bookmarkUrl();// 座標URL
-	viewer.stalkerImage();// アニメーションポインター
-	viewer.markerLink('all2_marker.csv', vw);// CSVマーカー
 </script>
 </body>
 </html>
