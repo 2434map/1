@@ -36,28 +36,7 @@
 	var vh = 6400;
 	var vw = 9067;
 
-	var viewer = OpenSeadragon({
-		id: "main", 
-		prefixUrl: "images/", 
-		showNavigator: true, 
-		tileSources: {
-			Image: {
-				xmlns:    "http://schemas.microsoft.com/deepzoom/2008",
-				Url:      "tiles/",
-				Format:   "jpg", 
-				Overlap:  1, 
-				TileSize: 256,
-				Size: {
-					Height: vh,
-					Width:  vw
-				}
-			}
-		}
-	});
-	viewer.bookmarkUrl();// 座標URL
-	viewer.stalkerImage();// アニメーションポインター
-	//viewer.markerLink('marker.csv', vw);// CSVマーカー
-			var hEl = viewer.HTMLelements();
+
 		var mh = 36;
 		var mw = 36;
 
@@ -97,7 +76,28 @@
 //viewer.addHandler('open', function() {
 
 
-
+	var viewer = OpenSeadragon({
+		id: "main", 
+		prefixUrl: "images/", 
+		showNavigator: true, 
+		tileSources: {
+			Image: {
+				xmlns:    "http://schemas.microsoft.com/deepzoom/2008",
+				Url:      "tiles/",
+				Format:   "jpg", 
+				Overlap:  1, 
+				TileSize: 256,
+				Size: {
+					Height: vh,
+					Width:  vw
+				}
+			}
+		}
+	});
+	viewer.bookmarkUrl();// 座標URL
+	viewer.stalkerImage();// アニメーションポインター
+	//viewer.markerLink('marker.csv', vw);// CSVマーカー
+			var hEl = viewer.HTMLelements();
 
 
 			var M = [];
@@ -129,7 +129,7 @@
 				})
 				//new OpenSeadragon.MouseTracker({element: M[i], clickHandler: onMarker});
 			}
-alert("iko");
+
 			function onMarker(e){
 				var target = e.originalEvent.target;
 				if (target.matches('a')) {
