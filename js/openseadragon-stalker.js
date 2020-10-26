@@ -2,6 +2,7 @@
 
 	var imX = 10;
 	var imY = 10;
+	var exp = 180;
 
 	// ----------
 	var $ = window.OpenSeadragon;
@@ -20,7 +21,15 @@
 		var body = document.body;
 		var im = document.createElement("div");
 		im.id= 'stalker';
-		im.classList.add('stalkerOn');
+		if(jQuery.cookie('pointer') === undefined||jQuery.cookie('pointer')==1){ 
+			im.classList.add('stalkerOn');
+			jQuery.cookie('pointer','1',{expires:exp});
+		} else {
+			im.classList.add('stalkerOff');
+			jQuery.cookie('pointer','0',{expires:exp});
+		}
+
+
 		im.innerHTML = '<img src="images/skin80.gif" alt="" width="80" height="80">';
 		body.appendChild(im);
 
@@ -66,12 +75,14 @@
 					element.classList.add('stalkerOff');
 					element.classList.remove('stalkerOn');
 				});
+				jQuery.cookie('pointer','1',{expires:exp});
 			} else if(document.querySelector('.stalkerOff')) {
 				let elements = document.getElementsByClassName('stalkerOff');
 				Array.prototype.forEach.call(elements, function(element) {
 					element.classList.add('stalkerOn');
 					element.classList.remove('stalkerOff');
 				});
+				jQuery.cookie('pointer','0',{expires:exp});
 			}
 		}
 
