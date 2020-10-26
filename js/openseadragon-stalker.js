@@ -23,16 +23,16 @@
 		var cookie = jQuery.cookie('pointer');
 		im.id= 'stalker';
 
-		if(jQuery.cookie('pointer') === undefined||jQuery.cookie('pointer')){ 
+		if(cookie === undefined||cookie){ 
 			im.classList.add('stalkerOn');
 			jQuery.removeCookie('pointer');
-			jQuery.cookie('pointer',true,{expires:exp});
-			console.log(jQuery.cookie('pointer'));
+			jQuery.cookie('pointer',true,{expires:exp, path: '/'});
+			console.log(cookie);
 			console.log('stalkerOn');
 		} else {
 			im.classList.add('stalkerOff');
 			jQuery.removeCookie('pointer');
-			jQuery.cookie('pointer',false,{expires:exp});
+			jQuery.cookie('pointer',false,{expires:exp, path: '/'});
 			console.log('stalkerOff');
 		}
 
@@ -81,7 +81,7 @@
 					element.classList.remove('stalkerOn');
 				});
 				jQuery.removeCookie('pointer');
-				jQuery.cookie('pointer',false,{expires:exp});
+				jQuery.cookie('pointer',false,{expires:exp, path: '/'});
 			} else if(document.querySelector('.stalkerOff')) {
 				let elements = document.getElementsByClassName('stalkerOff');
 				Array.prototype.forEach.call(elements, function(element) {
@@ -89,7 +89,7 @@
 					element.classList.remove('stalkerOff');
 				});
 				jQuery.removeCookie('pointer');
-				jQuery.cookie('pointer',true,{expires:exp});
+				jQuery.cookie('pointer',true,{expires:exp, path: '/'});
 			}
 			console.log(jQuery.cookie('pointer'));
 		}
