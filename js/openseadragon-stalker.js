@@ -26,9 +26,12 @@
 		if(jQuery.cookie('pointer') === undefined||jQuery.cookie('pointer')){ 
 			im.classList.add('stalkerOn');
 			jQuery.cookie('pointer',true,{expires:exp});
+			console.log(jQuery.cookie('pointer'));
+			console.log('stalkerOn');
 		} else {
 			im.classList.add('stalkerOff');
 			jQuery.cookie('pointer',false,{expires:exp});
+			console.log('stalkerOff');
 		}
 
 
@@ -84,7 +87,7 @@
 				});
 				jQuery.cookie('pointer',true,{expires:exp});
 			}
-			console.log(jQuery.cookie('pointer'));
+
 		}
 
 	};
