@@ -21,7 +21,7 @@
 		var body = document.body;
 		var im = document.createElement("div");
 		im.id= 'stalker';
-		if(jQuery.cookie('pointer') === undefined||jQuery.cookie('pointer')==1){ 
+		if(jQuery.cookie('pointer') === undefined||jQuery.cookie('pointer')=='1'){ 
 			im.classList.add('stalkerOn');
 			jQuery.cookie('pointer','1',{expires:exp});
 		} else {
