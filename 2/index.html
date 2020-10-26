@@ -2,13 +2,7 @@
 <html><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.csv.min.js"></script>
-<script src="js/openseadragon.js"></script>
-<script src="js/openseadragon-bookmark-url.js"></script>
-<script src="js/openseadragon-imaginghelper.js"></script>
-<script src="js/OpenSeadragonHTMLelements.js"></script>
-<script src="js/openseadragon-stalker.js"></script>
+<script src="config.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145408095-1"></script>
@@ -35,19 +29,17 @@
 
 	var vh = 6400;
 	var vw = 9067;
-	var mh = 36;
-	var mw = 36;
 
 	var markerfile = "marker.csv";
 	var marker = [];
+
 	function readMarkerCsv(data) {
-		var csv = jQuery.csv.toArrays(data);
+		var csv = $.csv.toArrays(data);
 		for(var i=0; i<csv.length; i++) if(i>0) marker.push(csv[i]);
 	}
-	jQuery.get(markerfile, readMarkerCsv, 'text');// マーカー情報
+	$.get(markerfile, readMarkerCsv, 'text');// マーカー情報
 
-	jQuery(document).ajaxStop(function() {
-
+	$(document).ajaxStop(function() {
 
 		// CSV読み込みが完了する前にviewerを生成するとopen時の描写がされない
 		var viewer = OpenSeadragon({
@@ -70,7 +62,9 @@
 		});
 		viewer.bookmarkUrl();// 座標URL
 		viewer.stalkerImage();// アニメーションポインター
+		viewer.markerLink(marker, vw);// 
 
+/*
 		// 変化検知
 		var imagingHelper = viewer.activateImagingHelper({onImageViewChanged: onImageViewChanged});
 		function onImageViewChanged(event) {
@@ -145,7 +139,7 @@
 		}
 		//console.dir(self.viewport); 
 		//console.log(self.viewport.getZoom);
-
+*/
 	});
 
 
