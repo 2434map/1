@@ -87,7 +87,7 @@
 				});
 				jQuery.cookie('pointer',true,{expires:exp});
 			}
-
+			console.log(jQuery.cookie('pointer'));
 		}
 
 	};
