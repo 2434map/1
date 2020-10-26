@@ -23,12 +23,12 @@
 		var cookie = jQuery.cookie('pointer');
 		im.id= 'stalker';
 
-		if(cookie === undefined||cookie=='1'){ 
+		if(jQuery.cookie('pointer') === undefined||jQuery.cookie('pointer')){ 
 			im.classList.add('stalkerOn');
-			jQuery.cookie('pointer','1',{expires:exp});
+			jQuery.cookie('pointer',true,{expires:exp});
 		} else {
 			im.classList.add('stalkerOff');
-			jQuery.cookie('pointer','0',{expires:exp});
+			jQuery.cookie('pointer',false,{expires:exp});
 		}
 
 
@@ -54,9 +54,7 @@
 		tracker.setTracking(true);
 		self.addHandler('canvas-drag', mousemove);
 		//console.dir(self.viewport); 
-		//var dataString = self.viewport._contentAspectRatio.toFixed(10);
 		//console.log(dataString);
-		//console.log(self.viewport.getAspectRatio());
 
 		let pointerButton = new OpenSeadragon.Button({
 			tooltip:  'Pointer',
@@ -77,15 +75,16 @@
 					element.classList.add('stalkerOff');
 					element.classList.remove('stalkerOn');
 				});
-				jQuery.cookie('pointer','1',{expires:exp});
+				jQuery.cookie('pointer',false,{expires:exp});
 			} else if(document.querySelector('.stalkerOff')) {
 				let elements = document.getElementsByClassName('stalkerOff');
 				Array.prototype.forEach.call(elements, function(element) {
 					element.classList.add('stalkerOn');
 					element.classList.remove('stalkerOff');
 				});
-				jQuery.cookie('pointer','0',{expires:exp});
+				jQuery.cookie('pointer',true,{expires:exp});
 			}
+			console.log(jQuery.cookie('pointer'));
 		}
 
 	};
