@@ -16,6 +16,7 @@
 		var self = this;
 		var mh = 36;
 		var mw = 36;
+		var exp = 180;
 
 		var cookie = jQuery.cookie('marker');
 		if(cookie === undefined||cookie == "1"){ 
