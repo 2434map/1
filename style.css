@@ -83,9 +83,10 @@ nav>img {
 
 #print {
 	display:none;
-	margin-left: 172mm;
 	padding: 10px;
 	line-height: 200%;
+	width:180px;
+	float: left;
 }
 #print>a {text-decoration: none;}
 
