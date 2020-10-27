@@ -64,8 +64,8 @@
 
 
 
-		if(self.imagingHelper.getZoomFactor() > 0.5){
-			if(jQuery('.markerOn').length) jQuery("a.marker").css('display','block');
+		if(self.imagingHelper.getZoomFactor() > 0.5 && jQuery('.markerOn').length){
+			jQuery("a.marker").css('display','block');
 		} else {
 			jQuery("a.marker").css('display','none');
 		}
