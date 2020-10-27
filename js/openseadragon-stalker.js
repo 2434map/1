@@ -25,9 +25,11 @@
 
 		if(cookie === undefined||cookie == "1"){ 
 			im.classList.add('stalkerOn');
+			im.style.display="block";
 			jQuery.cookie('pointer',"1",{expires:exp, path: '/'});
 		} else {
 			im.classList.add('stalkerOff');
+			im.style.display="none";
 			jQuery.cookie('pointer',"0",{expires:exp, path: '/'});
 		}
 
