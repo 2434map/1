@@ -74,6 +74,7 @@
 				Array.prototype.forEach.call(elements, function(element) {
 					element.classList.add('stalkerOff');
 					element.classList.remove('stalkerOn');
+					element.style.display="none";
 				});
 				jQuery.cookie('pointer',"0",{expires:exp, path: '/'});
 			} else if(document.querySelector('.stalkerOff')) {
@@ -81,6 +82,7 @@
 				Array.prototype.forEach.call(elements, function(element) {
 					element.classList.add('stalkerOn');
 					element.classList.remove('stalkerOff');
+					element.style.display="block";
 				});
 				jQuery.cookie('pointer',"1",{expires:exp, path: '/'});
 			}

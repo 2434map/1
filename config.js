@@ -7,5 +7,6 @@
 	'js/openseadragon-imaginghelper.js', 
 	'js/OpenSeadragonHTMLelements.js', 
 	'js/openseadragon-stalker.js', 
-	'js/openseadragon-marker.js'
+	'js/openseadragon-marker.js', 
+	'js/openseadragon-print.js'
 ]);
