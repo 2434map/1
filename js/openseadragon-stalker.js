@@ -33,6 +33,7 @@
 			im.classList.add('stalkerOff');
 			jQuery.removeCookie('pointer');
 			jQuery.cookie('pointer',false,{expires:exp, path: '/'});
+			console.log(cookie);
 			console.log('stalkerOff');
 		}
 
