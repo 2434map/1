@@ -18,13 +18,7 @@
 		var mw = 36;
 		var exp = 180;
 
-		var cookie = jQuery.cookie('marker');
-		if(cookie === undefined||cookie == "1"){ 
-			jQuery("a.marker").addClass('markerOn');
-			jQuery.cookie('marker',"1",{expires:exp, path: '/'});
-		} else {
-			jQuery.cookie('marker',"0",{expires:exp, path: '/'});
-		}
+
 
 
 		// 変化検知
@@ -40,9 +34,19 @@
 		var hEl = self.HTMLelements();
 		var M = [];
 
+		var cookie = jQuery.cookie('marker');
+		var initclass;
+		if(cookie === undefined||cookie == "1"){ 
+			initclass = "marker markerOn";
+			jQuery.cookie('marker',"1",{expires:exp, path: '/'});
+		} else {
+			initclass = "marker";
+			jQuery.cookie('marker',"0",{expires:exp, path: '/'});
+		}
+
 		for(var i=0; i<marker.length; i++){
 			M[i] = document.createElement("a");
-			M[i].className = "marker markerOn";
+			M[i].className = initclass;
 			M[i].setAttribute("href",marker[i][3]);
 			M[i].setAttribute("title",marker[i][2]);
 			M[i].setAttribute("target","_blank");
@@ -57,6 +61,8 @@
 			})
 			new OpenSeadragon.MouseTracker({element: M[i], clickHandler: onMarker});
 		}
+
+
 
 		if(self.imagingHelper.getZoomFactor() > 0.5){
 			if(jQuery('.markerOn').length) jQuery("a.marker").css('display','block');
