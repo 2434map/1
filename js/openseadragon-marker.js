@@ -17,6 +17,15 @@
 		var mh = 36;
 		var mw = 36;
 
+		var cookie = jQuery.cookie('marker');
+		if(cookie === undefined||cookie == "1"){ 
+			jQuery("a.marker").addClass('markerOn');
+			jQuery.cookie('marker',"1",{expires:exp, path: '/'});
+		} else {
+			jQuery.cookie('marker',"0",{expires:exp, path: '/'});
+		}
+
+
 		// 変化検知
 		var imagingHelper = self.activateImagingHelper({onImageViewChanged: onImageViewChanged});
 		function onImageViewChanged(event) {
@@ -78,6 +87,7 @@
 			if  (jQuery('.markerOn').length){ 
 				jQuery("a.marker").removeClass('markerOn');
 				jQuery("a.marker").css('display','none');
+				jQuery.cookie('marker',"0",{expires:exp, path: '/'});
 			} else {
 				jQuery("a.marker").addClass('markerOn');
 				if(imagingHelper.getZoomFactor() > 0.5){
@@ -85,6 +95,7 @@
 				} else {
 					jQuery("a.marker").css('display','none');
 				}
+				jQuery.cookie('marker',"1",{expires:exp, path: '/'});
 			}
 		}
 		//console.dir(self.viewport); 
