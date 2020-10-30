@@ -18,12 +18,19 @@
 	$.Viewer.prototype.stalkerImage = function() {
 		var self = this;
 
+		// マウス判定
+		var hasTapEvent;
+		var iframe = document.createElement('iframe');
+		document.body.appendChild(iframe);
+		hasTapEvent = ('ontouchstart' in iframe.contentWindow);
+		iframe.remove();
+
 		var body = document.body;
 		var im = document.createElement("div");
 		var cookie = jQuery.cookie('pointer');
 		im.id= 'stalker';
 
-		if(cookie === undefined||cookie == "1"){ 
+		if((cookie === undefined||cookie == "1") && hasTapEvent==false){ 
 			im.classList.add('stalkerOn');
 			im.style.display="block";
 			jQuery.cookie('pointer',"1",{expires:exp, path: '/'});
@@ -32,6 +39,9 @@
 			im.style.display="none";
 			jQuery.cookie('pointer',"0",{expires:exp, path: '/'});
 		}
+
+
+
 
 
 		im.innerHTML = '<img src="images/skin80.gif" alt="" width="80" height="80">';
@@ -67,8 +77,11 @@
 			onClick: pointerChange
 		});
 		//self.addControl(pointerButton.element, { anchor: OpenSeadragon.ControlAnchor.TOP_LEFT });
-		self.buttons.buttons.push(pointerButton);
-		self.buttons.element.appendChild(pointerButton.element);
+
+		if(hasTapEvent==false){
+			self.buttons.buttons.push(pointerButton);
+			self.buttons.element.appendChild(pointerButton.element);
+		}
 
 		function pointerChange(){
 			if (document.querySelector('.stalkerOn')){ 
