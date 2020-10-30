@@ -8,5 +8,10 @@
 	'js/OpenSeadragonHTMLelements.js', 
 	'js/openseadragon-stalker.js', 
 	'js/openseadragon-marker.js', 
-	'js/openseadragon-print.js'
+	'js/openseadragon-print.js',
+	'js/Blob.js',
+	'js/canvas-toBlob.js',
+	'js/FileSaver.min.js',
+	'js/openseadragon-blob.js'
 ]);
+
