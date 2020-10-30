@@ -18,6 +18,15 @@
 	$.Viewer.prototype.printMode = function() {
 		var self = this;
 
+		var p = document.createElement('div');
+		p.id= 'print';
+		p.innerHTML = '<ul>' + 
+			'<li><a href="javascript:/*印刷モード終了*/" id="off">印刷モード終了。</a></li>' + 
+			'<li><a href="javascript:/*印刷する*/" id="run">印刷する。</a></li>' + 
+			'</ul>';
+		const main = document.getElementById("main");
+		main.appendChild(p);
+
 		let printButton = new OpenSeadragon.Button({
 			tooltip:  'Print',
 			srcRest:  'images/print_rest.png',
