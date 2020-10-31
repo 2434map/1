@@ -14,27 +14,24 @@ main {
 	margin:0;
 }
 nav {
-	position: absolute;
-	width: 100%;
-	height: 100%;
+	width: 650px;
+	padding-right: 200px;
 }
 
 nav>ul {
-	position: absolute;
-	top: 3px;
-	left:290px;
-	z-index: 99;
+	position: relative;
+	margin-left  : 10px;
 }
 
-nav>ul>li, 
-div#print>ul>li {
+nav>ul>li {
 	list-style-type: none;
 	display: block;
 	padding:4px 10px;
-	margin-right  : 18px;
+	margin-right  : 10px;
 	margin-bottom  : 5px;
 	overflow: hidden;
 	height:18px;
+	width:auto;
 	line-height:18px;
 	font-size: 10px; font-size: 1.0rem;
 	        border-radius: 10px;
@@ -52,7 +49,7 @@ nav>ul>li.current {
 	pointer-events: none;
 }
 nav>img {
-	position: absolute;
+	position: fixed;
 	z-index: 99;
 	top: calc(50% - 9px);
 	left: calc(50% - 9px);
@@ -60,16 +57,15 @@ nav>img {
 	pointer-events: none;
 }
 
-
-@media screen and (max-width: 1120px) {
+@media screen and (max-width: 1128px) {
 	nav>ul {
-		top: 36px;
-		left:5px;
+		margin-left:5px;
 		z-index: 99;
 	}
 
 	nav>ul>li {
-		float   : none;
+		float: none;
+		width:150px;
 	}
 }
 
@@ -85,10 +81,7 @@ nav>img {
 	width:100%;
 	height:100%;
 }
-#print>ul {
 
-
-}
 #print {
 	position: absolute;
 	top: 3px;

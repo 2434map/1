@@ -12,6 +12,7 @@
 	'js/Blob.js',
 	'js/canvas-toBlob.js',
 	'js/FileSaver.min.js',
-	'js/openseadragon-blob.js'
+	'js/openseadragon-blob.js',
+	'js/openseadragon-nav.js'
 ]);
 
