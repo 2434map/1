@@ -23,6 +23,7 @@ nav>ul {
 	margin-left  : 10px;
 }
 
+#print>ul>li, 
 nav>ul>li {
 	list-style-type: none;
 	display: block;
