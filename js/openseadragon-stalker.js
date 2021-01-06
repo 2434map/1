@@ -44,7 +44,7 @@
 
 
 
-		im.innerHTML = '<img src="images/skin80.gif" alt="" width="80" height="80">';
+		im.innerHTML = '<img src="images/skin80.webp" alt="" width="80" height="80">';
 		body.appendChild(im);
 
 		window.addEventListener('mouseover',
