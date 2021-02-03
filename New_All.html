@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<script src="config.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="https://use.fontawesome.com/releases/v5.11.1/css/all.css" rel="stylesheet">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145408095-1"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-145408095-1');
+</script>
+<title>にじさんじサーバ新規ワールド地図</title>
+</head><body>
+<main id="main"></main>
+<script type="text/javascript">
+
+	var vh = 9450;
+	var vw = 9452;
+
+	var markerfile = "New_All_marker.csv";
+	var marker = [];
+
+	function readMarkerCsv(data) {
+		var csv = $.csv.toArrays(data);
+		for(var i=0; i<csv.length; i++) if(i>0) marker.push(csv[i]);
+	}
+	$.get(markerfile, readMarkerCsv, 'text');// マーカー情報
+
+	$(document).ajaxStop(function() {
+
+		var viewer = OpenSeadragon({
+			id: "main", 
+			prefixUrl: "images/", 
+			showNavigator:  true, 
+			tileSources: {
+				Image: {
+					xmlns: "http://schemas.microsoft.com/deepzoom/2008", 
+					Url: "New_All_tiles/", 
+					Format: "jpg", 
+					Overlap:  1, 
+					TileSize: 256,
+					Size: {
+						Height: vh,
+						Width:	vw
+					}
+				}
+			}
+		});
+		viewer.nav("New_All");// ナビボタン
+		viewer.bookmarkUrl();// 座標URL
+		viewer.stalkerImage();// アニメーションポインター
+		viewer.markerLink(marker, vw);// マーカーリンク
+		viewer.saveImage();// 画像ダウンロード
+		viewer.printMode();// 印刷モード
+	});
+</script>
+</body>
+</html>
