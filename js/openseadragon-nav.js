@@ -34,6 +34,9 @@
 		if (c == "New") li += ' class="current"';
 		li += '><a href="New.html">新規ワールド</a></li>';
 		li += '<li';
+		if (c == "New_All") li += ' class="current"';
+		li += '><a href="New_All.html">新規ワールド全体地図</a></li>';
+		li += '<li';
 		if (c == "New_Nether") li += ' class="current"';
 		li += '><a href="New_Nether.html">新規ワールドネザー</a></li>';
 		var u = document.createElement('ul');
