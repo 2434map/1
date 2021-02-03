@@ -35,7 +35,7 @@
 		li += '><a href="New.html">新規ワールド</a></li>';
 		li += '<li';
 		if (c == "New_All") li += ' class="current"';
-		li += '><a href="New_All.html">新規ワールド全体地図</a></li>';
+		li += '><a href="New_All.html#zoom=5.726591760299626&x=0.5091109041920658&y=0.5018999594918577">新規ワールド全体地図</a></li>';
 		li += '<li';
 		if (c == "New_Nether") li += ' class="current"';
 		li += '><a href="New_Nether.html">新規ワールドネザー</a></li>';
